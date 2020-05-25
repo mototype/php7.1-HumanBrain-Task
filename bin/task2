@@ -1,0 +1,29 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use App\Brain;
+use App\Human;
+use App\MemoryGenerator;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$evenWords = [
+    'red, cyan, dark',
+    'eton, cyan',
+    'dark, eton, red',
+];
+
+$memoryGenerator = new MemoryGenerator(1000, $evenWords, 'red', 1, 5, 35, 13, '/');
+$memories = $memoryGenerator->generate();
+
+$brain = new Brain();
+$human = new Human($brain);
+
+foreach ($memories as $memory) {
+    $human->remember($memory);
+}
+
+$human->remember("I'm 23 years old");
+$human->forget("I'm 23 years old");

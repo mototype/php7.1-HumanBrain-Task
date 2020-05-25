@@ -1,0 +1,17 @@
+#!/usr/bin/env php
+<?php
+
+declare(strict_types=1);
+
+use App\MemoryGenerator;
+
+require_once __DIR__ . '/../vendor/autoload.php';
+
+$evenWords = [
+    'red, cyan, dark',
+    'eton, cyan',
+    'dark, eton, red',
+];
+
+$memoryGenerator = new MemoryGenerator(1000, $evenWords, 'red', 1, 5, 35, 13, '/');
+echo implode("\n", $memoryGenerator->generate());
